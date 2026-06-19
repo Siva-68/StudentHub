@@ -67,8 +67,15 @@ const studentSchema = new mongoose.Schema(
         // =========================
 
         profileImage: {
-            type: String,
-            default: ""
+            public_id: {
+                type: String,
+                default: ""
+            },
+
+            url: {
+                type: String,
+                default: ""
+            }
         },
 
         // =========================
