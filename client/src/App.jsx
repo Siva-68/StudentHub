@@ -4,7 +4,6 @@ import Login from "./pages/Login/Login";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Students from "./pages/Students/Students";
 import NotFound from "./pages/NotFound/NotFound";
-import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
