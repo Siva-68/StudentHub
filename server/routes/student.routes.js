@@ -7,9 +7,10 @@ import {
     deleteStudent,
     searchStudents
 } from "../controllers/student.controller.js";
-
+import { getStudentStats } from "../controllers/student.controller.js";
 import { protect } from "../middleware/auth.middleware.js";
 import { authorizeRoles } from "../middleware/role.middleware.js";
+import upload from "../middleware/upload.middleware.js";
 
 const router = express.Router();
 
@@ -17,8 +18,11 @@ router.post(
     "/",
     protect,
     authorizeRoles("admin"),
+    upload.single("profileImage"),
     createStudent
 );
+
+router.get("/", getAllStudents);
 
 router.get(
     "/",
@@ -43,6 +47,7 @@ router.put(
     "/:id",
     protect,
     authorizeRoles("admin"),
+    upload.single("profileImage"),
     updateStudent
 );
 router.delete(
@@ -58,3 +63,5 @@ router.get(
     searchStudents
 );
 export default router;
+
+router.get("/stats", getStudentStats);
