@@ -1,0 +1,25 @@
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+}
+
+.card-header{
+  margin-bottom:20px;
+}
+
+.card-header h3{
+  margin:0;
+}
+
+.card-header p{
+  margin-top:5px;
+  color:#6b7280;
+}
+
+.card-footer{
+  margin-top:20px;
+  border-top:1px solid #e5e7eb;
+  padding-top:15px;
+}
