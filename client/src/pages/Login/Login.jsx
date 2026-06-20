@@ -1,5 +1,6 @@
 import { useState } from "react";
-import "./Login.css";
+import Button from "../../components/Button/Button";
+import Input from "../../components/Input/Input";
 
 function Login() {
   const [formData, setFormData] = useState({
@@ -7,65 +8,48 @@ function Login() {
     password: "",
   });
 
-  const handleChange = (e) => {
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    console.log(formData);
-
-    // Backend integration in next module
-  };
-
   return (
-    <div className="login-container">
+    <div
+      style={{
+        width: "350px",
+        margin: "80px auto",
+      }}
+    >
+      <h2>StudentHub Login</h2>
 
-      <div className="login-card">
+      <Input
+        label="Email"
+        name="email"
+        type="email"
+        placeholder="Enter your email"
+        value={formData.email}
+        onChange={handleChange}
+        required
+      />
 
-        <h1>StudentHub</h1>
-        <p>Administrator Login</p>
+      <Input
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Enter your password"
+        value={formData.password}
+        onChange={handleChange}
+        required
+      />
 
-        <form onSubmit={handleSubmit}>
-
-          <div className="form-group">
-            <label>Email</label>
-
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <div className="form-group">
-            <label>Password</label>
-
-            <input
-              type="password"
-              name="password"
-              placeholder="Enter password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
-          <button type="submit">
-            Login
-          </button>
-
-        </form>
-
-      </div>
-
+      <Button
+        text="Login"
+        type="submit"
+      />
     </div>
   );
 }
