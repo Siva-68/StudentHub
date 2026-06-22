@@ -9,23 +9,24 @@ export const registerAdminService = async (data) => {
     console.log("000");
     
     const { name, email, password } = data;
-
+    console.log("111");
+    
     if (!name || !email || !password) {
         throw new ApiError(400, "All fields are required");
     }
-
+    console.log("222");
     // Check for existing admin
     const existingAdmin = await Admin.findOne({ email });
     if (existingAdmin) {
         throw new ApiError(409, "An account with this email already exists");
     }
-
+    console.log("333");
     // Admin model pre-save hook handles bcrypt hashing
     const admin = await Admin.create({ name, email, password });
-
+    console.log("555");
     const adminData = admin.toObject();
     delete adminData.password;
-
+    console.log("666");
     return adminData;
 };
 
