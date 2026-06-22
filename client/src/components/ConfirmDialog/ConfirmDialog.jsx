@@ -1,9 +1,10 @@
 import Modal from "../Modal/Modal";
 import Button from "../Button/Button";
+import "./ConfirmDialog.css";
 
 function ConfirmDialog({
   isOpen,
-  title = "Confirm",
+  title = "Confirm Action",
   message,
   onConfirm,
   onCancel,
@@ -14,15 +15,9 @@ function ConfirmDialog({
       title={title}
       onClose={onCancel}
     >
-      <p>{message}</p>
+      <p className="confirm-dialog-body">{message}</p>
 
-      <div
-        style={{
-          display: "flex",
-          gap: "10px",
-          marginTop: "20px",
-        }}
-      >
+      <div className="confirm-dialog-actions">
         <Button
           text="Cancel"
           variant="primary"
@@ -39,4 +34,4 @@ function ConfirmDialog({
   );
 }
 
-export default ConfirmDialog;
+export default ConfirmDialog;

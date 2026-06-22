@@ -1,0 +1,123 @@
+.student-grid-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+}
+
+.student-grid-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-light);
+}
+
+.student-card-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.student-card-info {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.student-card-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.student-card-name:hover {
+  color: var(--primary);
+}
+
+.student-card-course {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.student-card-details {
+  margin-bottom: 20px;
+}
+
+/* Status Badge Styles */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.active {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.status-badge.inactive {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+.status-badge.pending {
+  background: var(--warning-light);
+  color: var(--warning);
+}
+
+/* Actions list */
+.student-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+  padding-top: 12px;
+}
+
+.card-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  font-size: 14px;
+}
+
+.card-action-btn:hover {
+  color: var(--text-white);
+  border-color: transparent;
+}
+
+.card-action-btn.view:hover {
+  background: var(--primary);
+  box-shadow: var(--primary-glow);
+}
+
+.card-action-btn.edit:hover {
+  background: var(--success);
+  box-shadow: var(--success-glow);
+}
+
+.card-action-btn.delete:hover {
+  background: var(--danger);
+  box-shadow: var(--danger-glow);
+}

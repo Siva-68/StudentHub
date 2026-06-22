@@ -5,43 +5,45 @@ function Table({
   data,
 }) {
   return (
-    <table className="table">
+    <div className="table-container">
+      <table className="table">
 
-      <thead>
+        <thead>
 
-        <tr>
-
-          {columns.map(column=>(
-            <th key={column.key}>
-              {column.header}
-            </th>
-          ))}
-
-        </tr>
-
-      </thead>
-
-      <tbody>
-
-        {data.map((row,index)=>(
-
-          <tr key={index}>
+          <tr>
 
             {columns.map(column=>(
-
-              <td key={column.key}>
-                {row[column.key]}
-              </td>
-
+              <th key={column.key}>
+                {column.header}
+              </th>
             ))}
 
           </tr>
 
-        ))}
+        </thead>
 
-      </tbody>
+        <tbody>
 
-    </table>
+          {data.map((row,index)=>(
+
+            <tr key={index}>
+
+              {columns.map(column=>(
+
+                <td key={column.key}>
+                  {row[column.key]}
+                </td>
+
+              ))}
+
+            </tr>
+
+          ))}
+
+        </tbody>
+
+      </table>
+    </div>
   );
 }
 
