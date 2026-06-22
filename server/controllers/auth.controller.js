@@ -9,8 +9,10 @@ import {
  * POST /api/auth/register
  */
 export const registerAdmin = asyncHandler(async (req, res) => {
+    console.log("123");
+    
     const result = await registerAdminService(req.body);
-
+console.log("345");
     return res.status(201).json(
         new ApiResponse(201, "Admin registered successfully", result)
     );

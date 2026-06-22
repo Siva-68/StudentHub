@@ -3,6 +3,8 @@ import ApiError from "../utils/ApiError.js";
 const emailRegex = /^\S+@\S+\.\S+$/;
 
 export const validateRegister = (req, res, next) => {
+    console.log('1');
+    
     const { name, email, password } = req.body;
 
     if (!name) return next(new ApiError(400, "Name required"));
@@ -10,6 +12,8 @@ export const validateRegister = (req, res, next) => {
     if (!password) return next(new ApiError(400, "Password required"));
 
     next();
+    console.log('2');
+    
 };
 
 export const validateLogin = (req, res, next) => {

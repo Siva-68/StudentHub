@@ -3,7 +3,7 @@ import { FaGraduationCap, FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Button from "../../components/Button/Button";
-import { registerAdmin } from "../../services/auth.services";
+import { registerAdmin } from "../../services/auth.services.js";
 import "./Register.css";
 
 function Register() {

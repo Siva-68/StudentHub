@@ -6,6 +6,8 @@ import generateToken from "../utils/generateToken.js";
  * Register Admin Service
  */
 export const registerAdminService = async (data) => {
+    console.log("000");
+    
     const { name, email, password } = data;
 
     if (!name || !email || !password) {
