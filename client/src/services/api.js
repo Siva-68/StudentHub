@@ -1,11 +1,12 @@
 import axios from "axios";
 
+// With the Vite proxy, all /api calls go to http://localhost:5000/api automatically
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
-  timeout: 10000,
+  baseURL: "/api",          // relative – works with Vite proxy in dev & same-origin in prod
+  timeout: 15000,
 });
 
-// Request Interceptor: Attach JWT Token from localStorage
+// ── Request Interceptor: attach JWT token ──────────────────────────────────
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("studenthub_token");
@@ -14,24 +15,21 @@ API.interceptors.request.use(
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Response Interceptor: Handle Unauthorized requests (401)
+// ── Response Interceptor: handle 401 (expired / missing token) ────────────
 API.interceptors.response.use(
   (response) => response,
   (error) => {
-    if (error.response && error.response.status === 401) {
-      // Clear authentication credentials
+    if (
+      error.response?.status === 401 &&
+      !window.location.pathname.includes("/login") &&
+      !window.location.pathname.includes("/register")
+    ) {
       localStorage.removeItem("studenthub_token");
       localStorage.removeItem("studenthub_user");
-      
-      // We can also trigger a redirect or reload the window to reset context
-      if (!window.location.pathname.includes("/login") && !window.location.pathname.includes("/register")) {
-        window.location.href = "/login?expired=true";
-      }
+      window.location.href = "/login?expired=true";
     }
     return Promise.reject(error);
   }

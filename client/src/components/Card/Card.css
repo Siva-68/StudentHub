@@ -1,25 +1,37 @@
+/* Upgrade Card component to use design tokens */
 .card {
-  background: #fff;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
 }
 
-.card-header{
-  margin-bottom:20px;
+.card-header {
+  margin-bottom: 20px;
 }
 
-.card-header h3{
-  margin:0;
+.card-header h3 {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.3px;
+  margin: 0;
 }
 
-.card-header p{
-  margin-top:5px;
-  color:#6b7280;
+.card-header p {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
 }
 
-.card-footer{
-  margin-top:20px;
-  border-top:1px solid #e5e7eb;
-  padding-top:15px;
+.card-body {
+  /* No default padding – controlled by usage context */
+}
+
+.card-footer {
+  margin-top: 20px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
 }

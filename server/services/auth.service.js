@@ -1,76 +1,60 @@
 import Admin from "../models/admin.model.js";
 import ApiError from "../utils/ApiError.js";
 import generateToken from "../utils/generateToken.js";
-import bcrypt from "bcrypt";
+
 /**
- * Register Admin
+ * Register Admin Service
  */
 export const registerAdminService = async (data) => {
-    console.log("1. Service Started");
-
     const { name, email, password } = data;
 
-    console.log("2. Data Destructured");
+    if (!name || !email || !password) {
+        throw new ApiError(400, "All fields are required");
+    }
 
+    // Check for existing admin
     const existingAdmin = await Admin.findOne({ email });
-
-    console.log("3. Checked Existing Admin");
-
     if (existingAdmin) {
-        throw new ApiError(409, "Email already exists");
+        throw new ApiError(409, "An account with this email already exists");
     }
 
-    console.log("4. Before Hash");
+    // Admin model pre-save hook handles bcrypt hashing
+    const admin = await Admin.create({ name, email, password });
 
-    
+    const adminData = admin.toObject();
+    delete adminData.password;
 
-    console.log("5. Password Hashed");
-
-    try{const admin = await Admin.create({
-        name,
-        email,
-        password
-    });
-
-    console.log("6. Admin Created");
-    return admin;
-    }
-    catch(err){
-        console.log(`Error while creating admin ${err.message}`);
-        
-    }
-    
+    return adminData;
 };
 
 /**
- * Login Admin
+ * Login Admin Service
  */
 export const loginAdminService = async ({ email, password }) => {
-    // Find admin
-    const admin = await Admin.findOne({ email });
+    if (!email || !password) {
+        throw new ApiError(400, "Email and password are required");
+    }
 
+    // Find admin by email
+    const admin = await Admin.findOne({ email });
     if (!admin) {
         throw new ApiError(401, "Invalid email or password");
     }
 
-    // Compare password
+    // Compare hashed password
     const isMatch = await admin.comparePassword(password);
-
     if (!isMatch) {
         throw new ApiError(401, "Invalid email or password");
     }
 
-    // Generate token
+    // Generate JWT
     const token = generateToken({
-        id: admin._id,
+        id:   admin._id,
         role: admin.role,
     });
 
     const adminData = admin.toObject();
     delete adminData.password;
 
-    return {
-        admin: adminData,
-        token
-    };
+    return { admin: adminData, token };
 };

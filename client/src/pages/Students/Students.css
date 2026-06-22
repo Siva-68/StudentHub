@@ -1,0 +1,154 @@
+.students-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Header */
+.students-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.students-header h1 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.5px;
+}
+
+.students-header p {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.students-header .btn {
+  width: auto;
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* Toolbar with search */
+.students-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.students-search-area {
+  flex: 1;
+  min-width: 200px;
+  max-width: 420px;
+}
+
+/* Table wrapper */
+.students-table-wrapper {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+/* Loader centered within table */
+.students-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+}
+
+/* Name cell layout */
+.students-name-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.student-table-name {
+  display: block;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.student-table-name:hover {
+  color: var(--primary);
+}
+
+.student-table-email {
+  display: block;
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+/* Status badges – shared definition with StudentCard */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+}
+
+.status-badge.active {
+  background: var(--success-light);
+  color: var(--success);
+}
+
+.status-badge.inactive {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+/* Action buttons */
+.students-action-row {
+  display: flex;
+  gap: 8px;
+}
+
+.action-icon-btn {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 13px;
+  transition: var(--transition-fast);
+}
+
+.action-icon-btn:hover {
+  border-color: transparent;
+  color: var(--text-white);
+}
+
+.action-icon-btn.view:hover { background: var(--primary); }
+.action-icon-btn.edit:hover { background: var(--success); }
+.action-icon-btn.delete:hover { background: var(--danger); }
+
+@media (max-width: 768px) {
+  .students-search-area {
+    max-width: 100%;
+  }
+
+  .students-header h1 { font-size: 22px; }
+}

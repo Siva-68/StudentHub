@@ -1,40 +1,28 @@
 import asyncHandler from "../utils/asyncHandler.js";
 import ApiResponse from "../utils/ApiResponse.js";
-
 import {
     registerAdminService,
     loginAdminService,
 } from "../services/auth.service.js";
 
 /**
- * Register Admin
+ * POST /api/auth/register
  */
-export const registerAdmin = asyncHandler(async (req, res, next) => {
-   console.log("siva");
-   
+export const registerAdmin = asyncHandler(async (req, res) => {
     const result = await registerAdminService(req.body);
-    console.log("1234");
-    
-    res.status(201).json(
+
+    return res.status(201).json(
         new ApiResponse(201, "Admin registered successfully", result)
     );
 });
 
-
 /**
- * Login Admin
+ * POST /api/auth/login
  */
-export const loginAdmin = asyncHandler(async (req, res,next) => {
-
+export const loginAdmin = asyncHandler(async (req, res) => {
     const result = await loginAdminService(req.body);
 
-    return res
-        .status(200)
-        .json(
-            new ApiResponse(
-                200,
-                "Login successful",
-                result
-            )
-        );
+    return res.status(200).json(
+        new ApiResponse(200, "Login successful", result)
+    );
 });

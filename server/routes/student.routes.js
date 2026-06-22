@@ -5,15 +5,19 @@ import {
     getStudentById,
     updateStudent,
     deleteStudent,
-    searchStudents
+    searchStudents,
+    getStudentStats
 } from "../controllers/student.controller.js";
-import { getStudentStats } from "../controllers/student.controller.js";
 import { protect } from "../middleware/auth.middleware.js";
 import { authorizeRoles } from "../middleware/role.middleware.js";
 import upload from "../middleware/upload.middleware.js";
 
 const router = express.Router();
 
+// ─── Stats (must be BEFORE /:id to avoid route collision) ───
+router.get("/stats", getStudentStats);
+
+// ─── Create ───
 router.post(
     "/",
     protect,
@@ -22,27 +26,26 @@ router.post(
     createStudent
 );
 
+// ─── Read All (public – accessible without auth for Dashboard stats) ───
 router.get("/", getAllStudents);
 
+// ─── Search ───
 router.get(
-    "/",
+    "/search",
     protect,
     authorizeRoles("admin"),
-    getAllStudents
+    searchStudents
 );
 
+// ─── Read One ───
 router.get(
     "/:id",
     protect,
     authorizeRoles("admin"),
     getStudentById
 );
-router.get(
-    "/:id",
-    protect,
-    authorizeRoles("admin"),
-    getStudentById
-);
+
+// ─── Update ───
 router.put(
     "/:id",
     protect,
@@ -50,18 +53,13 @@ router.put(
     upload.single("profileImage"),
     updateStudent
 );
+
+// ─── Delete ───
 router.delete(
     "/:id",
     protect,
     authorizeRoles("admin"),
     deleteStudent
 );
-router.get(
-    "/search",
-    protect,
-    authorizeRoles("admin"),
-    searchStudents
-);
-export default router;
 
-router.get("/stats", getStudentStats);
+export default router;

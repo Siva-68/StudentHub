@@ -1,45 +1,72 @@
+/* Premium Button styles using design tokens */
 .btn {
   width: 100%;
-  padding: 12px 18px;
+  padding: 12px 20px;
   border: none;
-  border-radius: 6px;
-  font-size: 16px;
+  border-radius: var(--radius-md);
+  font-size: 14px;
   font-weight: 600;
+  font-family: inherit;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: var(--transition-fast);
+  letter-spacing: 0.2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
 .btn:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none !important;
+  box-shadow: none !important;
 }
 
 /* Primary */
 .btn-primary {
-  background-color: #2563eb;
-  color: white;
+  background: var(--primary);
+  color: var(--text-white);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--primary-glow);
 }
 
-/* Success */
+/* Success / Green */
 .btn-success {
-  background-color: #16a34a;
-  color: white;
+  background: var(--success);
+  color: var(--text-white);
 }
 
 .btn-success:hover:not(:disabled) {
-  background-color: #15803d;
+  background: var(--success-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--success-glow);
 }
 
-/* Danger */
+/* Danger / Red */
 .btn-danger {
-  background-color: #dc2626;
-  color: white;
+  background: var(--danger);
+  color: var(--text-white);
 }
 
 .btn-danger:hover:not(:disabled) {
-  background-color: #b91c1c;
+  background: var(--danger-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--danger-glow);
+}
+
+/* Secondary / Outline */
+.btn-secondary {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: var(--bg-hover);
+  border-color: var(--border-color-focus);
 }

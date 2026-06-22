@@ -1,0 +1,26 @@
+/* EditStudent shares most styles from AddStudent via shared class names */
+.edit-student-container {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.edit-loader-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+}
+
+/* All form layout classes (.form-page-layout, .form-avatar-section,
+   .student-form-card, .form-grid-two-col, .form-field, .form-input-box,
+   .form-input-icon, .form-label, .required, .status-toggle-group,
+   .status-toggle-btn, .form-actions, .btn-cancel, .back-btn,
+   .avatar-upload-box, .avatar-upload-preview, .avatar-upload-placeholder,
+   .avatar-upload-icon, .remove-photo-btn, .form-page-header)
+   are already defined in AddStudent.css and shared via App.jsx global scope.
+   Only page-specific overrides go here. */
+
+.edit-student-container .form-page-header h1 {
+  color: var(--primary);
+}
