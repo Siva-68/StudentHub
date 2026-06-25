@@ -4,7 +4,7 @@ import connectDB from "./config/db.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 5000;
+const PORT = 'https://studenthub-backend-0da2.onrender.com';
 
 const startServer = async () => {
     try {
