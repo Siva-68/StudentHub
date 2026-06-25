@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
       // All /api requests are forwarded to the Express backend
       '/api': {
-        target: 'http://localhost:5000',
+        target: 'https://studenthub-backend-0da2.onrender.com',
         changeOrigin: true,
         secure: false,
       },
