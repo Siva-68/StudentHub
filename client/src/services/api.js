@@ -1,8 +1,8 @@
 import axios from "axios";
 
-// With the Vite proxy, all /api calls go to http://localhost:5000/api automatically
+// Use VITE_API_URL in production (full backend URL), falls back to "/api" for Vite dev proxy
 const API = axios.create({
-  baseURL: "/api",          // relative – works with Vite proxy in dev & same-origin in prod
+  baseURL: import.meta.env.VITE_API_URL || "/api",
   timeout: 15000,
 });
 
