@@ -52,7 +52,8 @@ export const createStudentService = async (
         email,
         phone,
         course,
-        year
+        year,
+        status
     } = data;
 
     if (!name || !email || !phone || !course || !year) {
@@ -74,6 +75,7 @@ export const createStudentService = async (
         phone,
         course,
         year,
+        status,
 
         createdBy: adminId,
 
@@ -202,6 +204,7 @@ export const updateStudentService = async (
     student.phone = data.phone ?? student.phone;
     student.course = data.course ?? student.course;
     student.year = data.year ?? student.year;
+    student.status = data.status ?? student.status;
 
     await student.save();
 
@@ -281,6 +284,8 @@ export const searchStudentService = async (keyword) => {
 
 export const getStudentStatsService = async () => {
   const total = await Student.countDocuments();
+  const active = await Student.countDocuments({ status: "active" });
+  const inactive = await Student.countDocuments({ status: "inactive" });
 
   const byCourse = await Student.aggregate([
     {
@@ -302,6 +307,8 @@ export const getStudentStatsService = async () => {
 
   return {
     total,
+    active,
+    inactive,
     byCourse,
     byYear,
   };
